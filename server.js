@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+const path = require('path')
 
 const app = express()
 const PORT = 3000
@@ -38,8 +39,9 @@ app.post('/user', async (request, response) => {
 
 app.get('/user', async (request,response) =>{
     try{
-        console.log("GET USER")
-        var userInstance =  await UserModel.find({username:'coolnewname'})
+
+        console.log("GET REQUEST")
+        var userInstance = await UserModel.find(request.query)
         console.log(userInstance)
         response.send(userInstance)
 
@@ -59,6 +61,15 @@ app.get('/users', async (request,response) => {
         console.log(userObject)
         response.send(userObject)
     } catch (error){
+        response.status(500).send(error)
+    }
+})
+
+app.get('/', async(request,response)=>{
+    try{
+        console.log("SEND HTML")
+        response.sendFile(path.join(__dirname + '/index.html'))
+    } catch(error){
         response.status(500).send(error)
     }
 })
