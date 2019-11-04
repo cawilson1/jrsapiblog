@@ -34,9 +34,30 @@ app.post('/user', async (request, response) => {
     } catch (error) {
         response.status(500).send(error)
     }
-}
+})
 
-)
+app.get('/user', async (request,response) =>{
+    try{
+        console.log("GET USER")
+        var userInstance =  await UserModel.find({username:'coolguy'})
+        console.log(userInstance)
+        response.send(userInstance)
+
+    } catch(error){
+        response.status(500).send(error)
+    }
+})
+
+app.put('/user/:username', async (request,response) =>{
+    try{
+        console.log("PUT USER")
+        var userInstance = await UserModel.findOneAndUpdate({'username':request.params.username},request.body)
+        console.log(userInstance)
+        response.send(userInstance)
+    }catch(error){
+        response.status(500).send(error)
+    }
+})
 
 const start = () => {
     return app.listen(PORT, () => {
