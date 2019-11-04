@@ -4,9 +4,9 @@ const routes = (app) => {
     app.route('/users')
     .get(userRoutes.getAllUsers)
 
-    //app.route('/user')
+    app.route('/user')
     //.get()
-    //.post()
+    .post(userRoutes.postUser)
 
     //app.route('/')
 }
