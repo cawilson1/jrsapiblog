@@ -39,11 +39,26 @@ app.post('/user', async (request, response) => {
 app.get('/user', async (request,response) =>{
     try{
         console.log("GET USER")
-        var userInstance =  await UserModel.find({username:'coolguy'})
+        var userInstance =  await UserModel.find({username:'coolnewname'})
         console.log(userInstance)
         response.send(userInstance)
 
     } catch(error){
+        response.status(500).send(error)
+    }
+})
+
+app.get('/users', async (request,response) => {
+    try{
+        console.log("GET ALL USERS")
+        var userInstances = await UserModel.find({})
+        var userObject = {}
+        userInstances.map(user=>{
+            userObject[user.id] = user
+        })
+        console.log(userObject)
+        response.send(userObject)
+    } catch (error){
         response.status(500).send(error)
     }
 })
@@ -58,6 +73,17 @@ app.put('/user/:username', async (request,response) =>{
         response.status(500).send(error)
     }
 })
+
+app.delete('/user/:username', async (request, response) => {
+    try{
+        console.log('DELETE USER');
+        var userInstance = await UserModel.deleteOne({'username': request.params.username})
+        console.log(userInstance);
+        response.send(userInstance)
+    }catch(error){
+        response.status(500).send(error)
+    }
+ })
 
 const start = () => {
     return app.listen(PORT, () => {
