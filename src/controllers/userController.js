@@ -1,9 +1,8 @@
 const mongoose = require('mongoose')
 const userSchema = require('../models/userModel')
 const path = require('path')
+const UserModel = mongoose.model('user', userSchema.user)
 
-const UserModel = mongoose.model('user', userSchema)
-/*
 const postUser = async (request, response) => {
     try {
         console.log("POST USER")
@@ -15,7 +14,7 @@ const postUser = async (request, response) => {
         response.status(500).send(error)
     }
 }
-
+/*
 async (request,response) =>{
     try{
 
@@ -76,4 +75,4 @@ async (request, response) => {
     }
  }
 */
-module.exports = { getAllUsers }
+module.exports = { getAllUsers, postUser }
