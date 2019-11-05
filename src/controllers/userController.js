@@ -43,16 +43,27 @@ const getAllUsers = async (request,response) => {
         response.status(500).send(error)
     }
 }
-/*
-async(request,response)=>{
+
+const getIndexPage = async (request,response)=>{
     try{
         console.log("SEND HTML")
-        response.sendFile(path.join(__dirname + '/index.html'))
+        response.sendFile(path.join(__dirname + '/../views/index.html'))
     } catch(error){
         response.status(500).send(error)
     }
 }
 
+const createUserPage = async (request,response)=>{
+    try{
+        console.log("SEND HTML TO CREATE USERS")
+        response.sendFile(path.join(__dirname + '/../views/createUser.html'))
+    } catch(error){
+        response.status(500).send(error)
+    }
+}
+
+
+/*
 async (request,response) =>{
     try{
         console.log("PUT USER")
@@ -75,4 +86,4 @@ async (request, response) => {
     }
  }
 */
-module.exports = { getAllUsers, postUser }
+module.exports = { getAllUsers, postUser, getIndexPage, createUserPage }

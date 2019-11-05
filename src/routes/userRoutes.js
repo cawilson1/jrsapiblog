@@ -8,7 +8,11 @@ const routes = (app) => {
     //.get()
     .post(userRoutes.postUser)
 
-    //app.route('/')
+    app.route('/')
+    .get(userRoutes.getIndexPage)
+
+    app.route('/createUser')
+    .get(userRoutes.createUserPage)
 }
 
 module.exports = { routes }
