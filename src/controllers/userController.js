@@ -47,7 +47,7 @@ const getAllUsers = async (request,response) => {
 const getIndexPage = async (request,response)=>{
     try{
         console.log("SEND HTML")
-        response.sendFile(path.join(__dirname + '/../../index.html'))
+        response.sendFile(path.join(__dirname + '/../views/index.html'))
     } catch(error){
         response.status(500).send(error)
     }
@@ -55,8 +55,8 @@ const getIndexPage = async (request,response)=>{
 
 const createUserPage = async (request,response)=>{
     try{
-        console.log("SEND HTML")
-        response.sendFile(path.join(__dirname + '/../../createUser.html'))
+        console.log("SEND HTML TO CREATE USERS")
+        response.sendFile(path.join(__dirname + '/../views/createUser.html'))
     } catch(error){
         response.status(500).send(error)
     }

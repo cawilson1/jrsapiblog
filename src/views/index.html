@@ -14,8 +14,8 @@
     <!---  <button onclick="getRequest('https://api.openbrewerydb.org/breweries?by_state=south_carolina')">Make the HTTP GET
         Request</button>-->
 
-    <button onclick="callPromise('http://api.icndb.com/jokes/')">Make the HTTP GET
-        Request</button>
+    <button onclick="callPromise('http://api.icndb.com/jokes/')">Make the HTTP GET Request</button>
+    <button onclick="location.href='http://localhost:3000/createUser'" type="button">Go to create User Page</button>
     <script>
 
 
@@ -93,17 +93,17 @@
             myPromise.then(response => response.json()).then(display);
             console.log(myPromise);
             //response.json() appears to return a new promise. see below
-           // console.log(myPromise);
+            // console.log(myPromise);
             //let test = myPromise.then(response => response.json());
             //console.log(test)
         }
 
-        async function callPromiseAwait(url){
+        async function callPromiseAwait(url) {
             let myPromise = await fetch(url);
             let myResponse = await myPromise.json();
             display(myResponse);
             //same as below
-           // console.log(myPromise.json().then(display));
+            // console.log(myPromise.json().then(display));
         }
 
         function getRequest(url) {

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id='un'>
+    <input id='pw'>
+    <button onclick="postUser()">SUBMIT</button>
+    <div id='inside'></div>
+    <script>
+
+        function postUser() {
+            const uname = document.getElementById('un').value
+            const pw = document.getElementById('pw').value
+            callPost('http://localhost:3000/user',uname,pw)
+        }
+
+
+        async function callPost(url,uname,pw){
+            try{
+                params={
+                    headers:{
+                        "content-type":"application/json; charset=UTF-8"
+                    },
+                    body:JSON.stringify({
+                        username:uname,
+                        password:pw
+                    }),
+                    method:"POST"
+                }
+                let myPromise = await fetch(url,params)
+                let myResponse = await myPromise.json();
+                document.getElementById('inside').innerHTML = JSON.stringify(myResponse);
+            }catch(error){
+                console.log(error)
+            }
+        }
+
+        async function callPromiseAwait(url) {
+            try {
+                let myPromise = await fetch(url);
+                let myResponse = await myPromise.json();
+
+                document.getElementById('inside').innerHTML = myResponse;
+            } catch (error) {
+                console.log(error)
+            }
+
+        }
+    </script>
+</body>
+
+</html>
