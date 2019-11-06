@@ -15,8 +15,30 @@
     <h1>Blog Post</h1>
     <div id="nav-placeholder">
     </div>
-    <button onclick="getUser()">SUBMIT</button>
+    <button onclick="getBlogposts('http://localhost:3000/blogpost?user=5dc2213334153f84957526f6')">GET USER BLOGPOSTS</button>
     <div id='inside'></div>
+
+    <script>
+        
+        async function getBlogposts(url){
+            try{
+
+                console.log('SENDING HTTP GET')
+                let data = await fetch(url)
+                console.log(data)
+                let myJson = await data.json()
+                console.log(myJson)
+
+                document.getElementById('inside').innerHTML += myJson.map(obj=>obj.blogpost + '<br/>')
+
+            } catch(error){
+                console.log(error)
+            }
+            
+
+        }
+    
+    </script>
 
 </body>
 
