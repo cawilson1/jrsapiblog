@@ -14,8 +14,8 @@ const postUser = async (request, response) => {
         response.status(500).send(error)
     }
 }
-/*
-async (request,response) =>{
+
+const getUser = async (request,response) =>{
     try{
 
         console.log("GET REQUEST")
@@ -27,7 +27,7 @@ async (request,response) =>{
         response.status(500).send(error)
     }
 }
-*/
+
 
 const getAllUsers = async (request,response) => {
     try{
@@ -44,30 +44,10 @@ const getAllUsers = async (request,response) => {
     }
 }
 
-const getIndexPage = async (request,response)=>{
-    try{
-        console.log("SEND HTML")
-        response.sendFile(path.join(__dirname + '/../views/index.html'))
-    } catch(error){
-        response.status(500).send(error)
-    }
-}
-
-const createUserPage = async (request,response)=>{
-    try{
-        console.log("SEND HTML TO CREATE USERS")
-        response.sendFile(path.join(__dirname + '/../views/createUser.html'))
-    } catch(error){
-        response.status(500).send(error)
-    }
-}
-
-
-/*
-async (request,response) =>{
+const putUser = async (request,response) =>{
     try{
         console.log("PUT USER")
-        var userInstance = await UserModel.findOneAndUpdate({'username':request.params.username},request.body)
+        var userInstance = await UserModel.findOneAndUpdate(request.query,request.body)
         console.log(userInstance)
         response.send(userInstance)
     }catch(error){
@@ -75,15 +55,15 @@ async (request,response) =>{
     }
 }
 
-async (request, response) => {
+const deleteUser = async (request, response) => {
     try{
         console.log('DELETE USER');
-        var userInstance = await UserModel.deleteOne({'username': request.params.username})
+        var userInstance = await UserModel.deleteOne(request.query)
         console.log(userInstance);
         response.send(userInstance)
     }catch(error){
         response.status(500).send(error)
     }
  }
-*/
-module.exports = { getAllUsers, postUser, getIndexPage, createUserPage }
+
+module.exports = { getUser, getAllUsers, postUser, deleteUser, putUser }

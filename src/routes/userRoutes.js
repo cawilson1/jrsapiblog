@@ -5,14 +5,10 @@ const routes = (app) => {
     .get(userRoutes.getAllUsers)
 
     app.route('/user')
-    //.get()
+    .get(userRoutes.getUser)
     .post(userRoutes.postUser)
-
-    app.route('/')
-    .get(userRoutes.getIndexPage)
-
-    app.route('/createUser')
-    .get(userRoutes.createUserPage)
+    .delete(userRoutes.deleteUser)
+    .put(userRoutes.putUser)
 }
 
 module.exports = { routes }

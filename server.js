@@ -1,7 +1,9 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
-const routes = require('./src/routes/userRoutes')
+const userRoutes = require('./src/routes/userRoutes')
+const webpageRoutes = require('./src/routes/webpageRoutes')
+
 const cors = require('cors')
 
 const app = express()
@@ -15,7 +17,8 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(cors())
 
-routes.routes(app)
+userRoutes.routes(app)
+webpageRoutes.routes(app)
 
 const start = () => {
     return app.listen(PORT, () => {
